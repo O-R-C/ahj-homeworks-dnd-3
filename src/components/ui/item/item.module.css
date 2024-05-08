@@ -1,0 +1,24 @@
+@value values: '@/css/variables.module.css';
+@value colorSecondary, padding, border, radius, shadow from values;
+
+.item {
+  margin: 0;
+  padding: 0;
+
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: padding;
+}
+
+.name {
+  grid-column: 1 / 4;
+}
+
+.size {
+  grid-column: 4 / 5;
+}
+
+.link {
+  grid-column: 5 / 6;
+  justify-self: start;
+}

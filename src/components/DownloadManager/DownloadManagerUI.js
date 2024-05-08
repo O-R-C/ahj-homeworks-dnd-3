@@ -1,7 +1,10 @@
 import getElement from '@/js/getElement'
+import item from '@/components/ui/item/item'
 import styles from './DownloadManager.module.css'
 
 export default class DownloadManagerUI {
+  #containerFiles
+
   getElement(element) {
     if (typeof element === 'string') {
       element = document.querySelector(element)
@@ -16,10 +19,14 @@ export default class DownloadManagerUI {
       classes: styles.header,
       textContent: 'Available Files (without sms and registration):',
     })
-    const containerFiles = getElement({ tag: 'div', classes: styles.containerFiles })
+    this.#containerFiles = getElement({ tag: 'div', classes: styles.containerFiles })
 
-    app.append(header, containerFiles)
+    app.append(header, this.#containerFiles)
 
     return app
+  }
+
+  addItem(file) {
+    this.#containerFiles.append(item(file))
   }
 }
