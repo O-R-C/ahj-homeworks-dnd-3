@@ -11,7 +11,7 @@ export const item = (file) => {
   const fileSize = getSize(file.url)
   const item = getElement({ tag: 'div', classes: styles.item })
   const name = getElement({ tag: 'div', classes: styles.name, textContent: file.name })
-  const size = getElement({ tag: 'div', classes: styles.size, textContent: fileSize })
+  const size = getElement({ tag: 'div', classes: styles.size, textContent: `${fileSize} MB` })
   const link = getElement({
     tag: 'a',
     classes: styles.link,
@@ -36,7 +36,7 @@ export const item = (file) => {
 const getSize = (str64) => {
   const size = window.atob(str64.split(',')[1]).length / 1024 / 1024
 
-  return `${Math.round(size * 100) / 100} MB`
+  return Math.round(size * 100) / 100
 }
 
 export default item
