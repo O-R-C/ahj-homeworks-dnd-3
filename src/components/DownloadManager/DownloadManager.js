@@ -29,5 +29,27 @@ export default class DownloadManager {
     })
   }
 
-  #addEventListener() {}
+  #addEventListener() {
+    this.#app.addEventListener('click', this.#onClick)
+  }
+
+  #onClick = (e) => {
+    const link = e.target.closest('a')
+
+    if (!link) return
+
+    this.#fireStartDownloadEvent(link.dataset.size)
+  }
+
+  #getStartDownloadEvent(size) {
+    return new CustomEvent('startDownload', {
+      detail: {
+        size,
+      },
+    })
+  }
+
+  #fireStartDownloadEvent(size) {
+    document.dispatchEvent(this.#getStartDownloadEvent(size))
+  }
 }
